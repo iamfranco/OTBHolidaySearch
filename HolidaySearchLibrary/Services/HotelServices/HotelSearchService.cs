@@ -4,7 +4,7 @@ using HolidaySearchLibrary.Services.ReaderServices;
 namespace HolidaySearchLibrary.Services.HotelServices;
 public class HotelSearchService : IHotelSearchService
 {
-    private IReaderService<Hotel> _hotelReaderService;
+    private readonly IReaderService<Hotel> _hotelReaderService;
 
     public HotelSearchService(IReaderService<Hotel> hotelReaderService)
     {
