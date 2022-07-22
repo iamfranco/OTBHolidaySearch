@@ -1,7 +1,7 @@
 ﻿using HolidaySearchLibrary.Models;
 using HolidaySearchLibrary.Services.ReaderServices;
 
-namespace HolidaySearchLibrary.Services;
+namespace HolidaySearchLibrary.Services.FlightServices;
 public class FlightSearchService : IFlightSearchService
 {
     private IReaderService<Flight> _flightReaderService;
