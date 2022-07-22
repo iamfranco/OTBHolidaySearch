@@ -39,7 +39,7 @@ public class HolidaySearchService
             }
         }
 
-        holidays.OrderBy(holiday => holiday.TotalPrice);
+        holidays = holidays.OrderBy(holiday => holiday.TotalPrice).ToList();
 
         return holidays;
     }

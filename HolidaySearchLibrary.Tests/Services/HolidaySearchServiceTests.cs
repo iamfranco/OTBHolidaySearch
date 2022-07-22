@@ -121,7 +121,8 @@ internal class HolidaySearchServiceTests
         List<Holiday> result = _holidaySearchService.Search(departingFrom, travelingTo, departureDate, duration);
 
         // Assert
-        result.Should().BeEquivalentTo(expectedResult);
+        result.Should().BeEquivalentTo(expectedResult, 
+            options => options.WithStrictOrdering());
     }
 
     private static List<Flight> GetFlights()
