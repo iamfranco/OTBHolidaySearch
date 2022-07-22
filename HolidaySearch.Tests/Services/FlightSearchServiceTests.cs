@@ -1,4 +1,5 @@
-﻿using HolidaySearch.Services;
+﻿using HolidaySearch.Models;
+using HolidaySearch.Services;
 using Moq;
 
 namespace HolidaySearch.Tests.Services;
@@ -13,6 +14,9 @@ internal class FlightSearchServiceTests
         // Arrange
         _flightReaderServiceMock = new Mock<IFlightReaderService>();
         _flightSearchService = new FlightSearchService(_flightReaderServiceMock.Object);
+
+        _flightReaderServiceMock.Setup(x => x.Read())
+            .Returns(GetFlights());
     }
 
     [Test]
@@ -26,5 +30,60 @@ internal class FlightSearchServiceTests
 
         // Assert
         act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Test]
+    public void Search_Should_Return_List_Of_Flights_Matching_Parameters()
+    {
+        // Arrange
+        string departingFrom = "MAN";
+        string travelingTo = "AGP";
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+
+        List<Flight> expectedResult = new()
+        {
+            GetFlights()[1]
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+    private static List<Flight> GetFlights()
+    {
+        return new()
+        {
+            new()
+            {
+                Id = 1,
+                Airline = "First Class Air",
+                From = "MAN",
+                To = "TFS",
+                Price = 470,
+                DepartureDate = DateTime.Parse("2023-07-01")
+            },
+            new()
+            {
+                Id = 2,
+                Airline = "Oceanic Airlines",
+                From = "MAN",
+                To = "AGP",
+                Price = 245,
+                DepartureDate = DateTime.Parse("2023-07-01")
+            },
+            new()
+            {
+                Id = 3,
+                Airline = "Trans American Airlines",
+                From = "MAN",
+                To = "PMI",
+                Price = 170,
+                DepartureDate = DateTime.Parse("2023-06-15")
+            }
+        };
     }
 }
