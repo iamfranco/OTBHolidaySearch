@@ -43,6 +43,38 @@ internal class HolidaySearchServiceTests
     }
 
     [Test]
+    public void Search_With_Null_DepartingFrom_Input_Should_Throw_ArgumentNullException()
+    {
+        // Arrange
+        string departingFrom = null;
+        string travelingTo = "AGP";
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+        int duration = 7;
+
+        // Act
+        Action act = () => _holidaySearchService.Search(departingFrom, travelingTo, departureDate, duration);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Test]
+    public void Search_With_Null_TravelingTo_Input_Should_Throw_ArgumentNullException()
+    {
+        // Arrange
+        string departingFrom = "MAN";
+        string travelingTo = null;
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+        int duration = 7;
+
+        // Act
+        Action act = () => _holidaySearchService.Search(departingFrom, travelingTo, departureDate, duration);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Test]
     public void Search_Should_Return_List_Of_Holidays_For_Each_Combination_Of_Flight_And_Hotel()
     {
         // Arrange

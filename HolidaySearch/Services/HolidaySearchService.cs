@@ -20,6 +20,12 @@ public class HolidaySearchService
 
     public List<Holiday> Search(string departingFrom, string travelingTo, DateTime departureDate, int duration)
     {
+        if (departingFrom is null)
+            throw new ArgumentNullException(nameof(departingFrom));
+
+        if (travelingTo is null)
+            throw new ArgumentNullException(nameof(travelingTo));
+
         List<Flight> flights = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
         List<Hotel> hotels = _hotelSearchService.Search(travelingTo, departureDate, duration);
 
