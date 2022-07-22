@@ -54,47 +54,33 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
-    public void Search_With_DepartingFrom_Null_Should_Return_List_Of_Flights_Matching_All_Non_Null_Parameters()
+    public void Search_With_DepartingFrom_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
         string departingFrom = null;
         string travelingTo = "PMI";
         DateTime departureDate = DateTime.Parse("2023-06-15");
 
-        List<Flight> expectedResult = new()
-        {
-            GetFlights()[2],
-            GetFlights()[3],
-        };
-
         // Act
-        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+        Action act = () => _flightSearchService.Search(departingFrom, travelingTo, departureDate);
 
         // Assert
-        result.Should().BeEquivalentTo(expectedResult,
-            options => options.WithStrictOrdering());
+        act.Should().Throw<ArgumentNullException>();
     }
 
     [Test]
-    public void Search_With_TravelingTo_Null_Should_Return_List_Of_Flights_Matching_All_Non_Null_Parameters()
+    public void Search_With_TravelingTo_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
         string departingFrom = "MAN";
         string travelingTo = null;
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
-        List<Flight> expectedResult = new()
-        {
-            GetFlights()[0],
-            GetFlights()[1],
-        };
-
         // Act
-        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+        Action act = () => _flightSearchService.Search(departingFrom, travelingTo, departureDate);
 
         // Assert
-        result.Should().BeEquivalentTo(expectedResult,
-            options => options.WithStrictOrdering());
+        act.Should().Throw<ArgumentNullException>();
     }
 
     private static List<Flight> GetFlights()
