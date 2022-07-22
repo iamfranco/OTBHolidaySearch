@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace HolidaySearch.Models;
+namespace HolidaySearchLibrary.Models;
 public class Flight
 {
     [JsonPropertyName("id")]

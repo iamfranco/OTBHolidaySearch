@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public class HotelSearchService : IHotelSearchService
 {
     private IReaderService<Hotel> _hotelReaderService;

@@ -1,7 +1,7 @@
-﻿using HolidaySearch.Models;
-using HolidaySearch.Services;
+﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services;
 
-namespace HolidaySearch.Tests.Services;
+namespace HolidaySearchLibrary.Tests.Services;
 internal class ReaderServiceTests
 {
     private ReaderService<Flight> _flightReaderService;

@@ -1,8 +1,8 @@
-﻿using HolidaySearch.Models;
-using HolidaySearch.Services;
+﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services;
 using Moq;
 
-namespace HolidaySearch.Tests.Services;
+namespace HolidaySearchLibrary.Tests.Services;
 internal class FlightSearchServiceTests
 {
     private FlightSearchService _flightSearchService;

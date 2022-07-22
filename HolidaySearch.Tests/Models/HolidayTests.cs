@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Tests.Models;
+namespace HolidaySearchLibrary.Tests.Models;
 internal class HolidayTests
 {
     private Flight _flight;

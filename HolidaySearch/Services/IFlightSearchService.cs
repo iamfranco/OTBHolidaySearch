@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public interface IFlightSearchService
 {
     List<Flight> Search(string departingFrom, string travelingTo, DateTime departureDate);
