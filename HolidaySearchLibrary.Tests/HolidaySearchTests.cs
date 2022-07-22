@@ -85,6 +85,7 @@ internal class HolidaySearchTests
 
         // Assert
         results.First().Should().BeEquivalentTo(expectedFirstResult);
+        results.First().TotalPrice.Should().Be(826);
     }
 
     [Test]
@@ -127,6 +128,7 @@ internal class HolidaySearchTests
 
         // Assert
         results.First().Should().BeEquivalentTo(expectedFirstResult);
+        results.First().TotalPrice.Should().Be(675);
     }
 
     [Test]
@@ -169,5 +171,6 @@ internal class HolidaySearchTests
 
         // Assert
         results.First().Should().BeEquivalentTo(expectedFirstResult);
+        results.First().TotalPrice.Should().Be(1175);
     }
 }
