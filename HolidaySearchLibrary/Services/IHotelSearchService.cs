@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public interface IHotelSearchService
 {
     List<Hotel> Search(string localAirport, DateTime arrivalDate, int duration);

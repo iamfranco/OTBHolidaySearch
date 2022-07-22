@@ -1,8 +1,8 @@
-﻿using HolidaySearch.Models;
-using HolidaySearch.Services;
+﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services;
 using Moq;
 
-namespace HolidaySearch.Tests.Services;
+namespace HolidaySearchLibrary.Tests.Services;
 internal class HolidaySearchServiceTests
 {
     private Mock<IFlightSearchService> _flightSearchServiceMock;
@@ -16,7 +16,7 @@ internal class HolidaySearchServiceTests
         _flightSearchServiceMock = new Mock<IFlightSearchService>();
         _hotelSearchServiceMock = new Mock<IHotelSearchService>();
 
-        _holidaySearchService = new HolidaySearchService(_flightSearchServiceMock.Object, 
+        _holidaySearchService = new HolidaySearchService(_flightSearchServiceMock.Object,
             _hotelSearchServiceMock.Object);
     }
 
@@ -46,7 +46,7 @@ internal class HolidaySearchServiceTests
     public void Search_With_Null_DepartingFrom_Input_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = null;
+        List<string> departingFrom = null;
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023-07-01");
         int duration = 7;
@@ -62,7 +62,7 @@ internal class HolidaySearchServiceTests
     public void Search_With_Null_TravelingTo_Input_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = null;
         DateTime departureDate = DateTime.Parse("2023-07-01");
         int duration = 7;
@@ -78,7 +78,7 @@ internal class HolidaySearchServiceTests
     public void Search_Should_Return_List_Of_Holidays_For_Each_Combination_Of_Flight_And_Hotel()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023-07-01");
         int duration = 7;
@@ -102,7 +102,7 @@ internal class HolidaySearchServiceTests
     public void Search_Should_Return_Holidays_Ordered_By_TotalPrice_Ascending()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023-07-01");
         int duration = 7;
@@ -121,7 +121,8 @@ internal class HolidaySearchServiceTests
         List<Holiday> result = _holidaySearchService.Search(departingFrom, travelingTo, departureDate, duration);
 
         // Assert
-        result.Should().BeEquivalentTo(expectedResult);
+        result.Should().BeEquivalentTo(expectedResult, 
+            options => options.WithStrictOrdering());
     }
 
     private static List<Flight> GetFlights()
@@ -132,8 +133,8 @@ internal class HolidaySearchServiceTests
             {
                 Id = 1,
                 Airline = "First Class Air",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 470,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -141,8 +142,8 @@ internal class HolidaySearchServiceTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             }

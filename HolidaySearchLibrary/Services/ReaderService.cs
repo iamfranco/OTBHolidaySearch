@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public class ReaderService<T> : IReaderService<T>
 {
     private string _filePath;

@@ -1,4 +1,4 @@
-﻿namespace HolidaySearch.Models;
+﻿namespace HolidaySearchLibrary.Models;
 public class Holiday
 {
     public Flight Flight { get; }

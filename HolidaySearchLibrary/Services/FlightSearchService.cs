@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public class FlightSearchService : IFlightSearchService
 {
     private IReaderService<Flight> _flightReaderService;
@@ -13,7 +13,7 @@ public class FlightSearchService : IFlightSearchService
         _flightReaderService = flightReaderService;
     }
 
-    public List<Flight> Search(string departingFrom, string travelingTo, DateTime departureDate)
+    public List<Flight> Search(List<string> departingFrom, string travelingTo, DateTime departureDate)
     {
         if (departingFrom is null)
             throw new ArgumentNullException(nameof(departingFrom));
@@ -24,8 +24,8 @@ public class FlightSearchService : IFlightSearchService
         List<Flight> flights = _flightReaderService.Read();
 
         return flights.Where(flight =>
-            flight.From == departingFrom &&
-            flight.To == travelingTo &&
+            (!departingFrom.Any() || departingFrom.Contains(flight.DepartingFrom)) &&
+            flight.TravelingTo == travelingTo &&
             flight.DepartureDate == departureDate).ToList();
     }
 }

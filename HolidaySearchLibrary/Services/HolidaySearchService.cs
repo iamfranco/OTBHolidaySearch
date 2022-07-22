@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Services;
+namespace HolidaySearchLibrary.Services;
 public class HolidaySearchService
 {
     private IFlightSearchService _flightSearchService;
@@ -18,7 +18,7 @@ public class HolidaySearchService
         _hotelSearchService = hotelSearchService;
     }
 
-    public List<Holiday> Search(string departingFrom, string travelingTo, DateTime departureDate, int duration)
+    public List<Holiday> Search(List<string> departingFrom, string travelingTo, DateTime departureDate, int duration)
     {
         if (departingFrom is null)
             throw new ArgumentNullException(nameof(departingFrom));
@@ -39,7 +39,7 @@ public class HolidaySearchService
             }
         }
 
-        holidays.OrderBy(holiday => holiday.TotalPrice);
+        holidays = holidays.OrderBy(holiday => holiday.TotalPrice).ToList();
 
         return holidays;
     }

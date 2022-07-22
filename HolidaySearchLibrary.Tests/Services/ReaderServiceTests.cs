@@ -1,7 +1,7 @@
-﻿using HolidaySearch.Models;
-using HolidaySearch.Services;
+﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services;
 
-namespace HolidaySearch.Tests.Services;
+namespace HolidaySearchLibrary.Tests.Services;
 internal class ReaderServiceTests
 {
     private ReaderService<Flight> _flightReaderService;
@@ -74,8 +74,8 @@ internal class ReaderServiceTests
             {
                 Id = 1,
                 Airline = "First Class Air",
-                From = "MAN",
-                To = "TFS",
+                DepartingFrom = "MAN",
+                TravelingTo = "TFS",
                 Price = 470,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -83,8 +83,8 @@ internal class ReaderServiceTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -92,8 +92,8 @@ internal class ReaderServiceTests
             {
                 Id = 3,
                 Airline = "Trans American Airlines",
-                From = "MAN",
-                To = "PMI",
+                DepartingFrom = "MAN",
+                TravelingTo = "PMI",
                 Price = 170,
                 DepartureDate = DateTime.Parse("2023-06-15")
             }

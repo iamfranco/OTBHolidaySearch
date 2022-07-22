@@ -1,6 +1,6 @@
-﻿using HolidaySearch.Models;
+﻿using HolidaySearchLibrary.Models;
 
-namespace HolidaySearch.Tests.Models;
+namespace HolidaySearchLibrary.Tests.Models;
 internal class HolidayTests
 {
     private Flight _flight;
@@ -83,8 +83,8 @@ internal class HolidayTests
         {
             Id = 1,
             Airline = "First Class Air",
-            From = "MAN",
-            To = "TFS",
+            DepartingFrom = "MAN",
+            TravelingTo = "TFS",
             Price = 470,
             DepartureDate = DateTime.Parse("2023-07-01")
         };

@@ -1,8 +1,8 @@
-﻿using HolidaySearch.Models;
-using HolidaySearch.Services;
+﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services;
 using Moq;
 
-namespace HolidaySearch.Tests.Services;
+namespace HolidaySearchLibrary.Tests.Services;
 internal class FlightSearchServiceTests
 {
     private FlightSearchService _flightSearchService;
@@ -33,10 +33,10 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
-    public void Search_Should_Return_List_Of_Flights_Matching_Parameters()
+    public void Search_With_DepartingFrom_One_Airport_Should_Return_List_Of_Flights_Matching_Parameters()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
@@ -54,10 +54,53 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
+    public void Search_With_DepartingFrom_Multiple_Airports_Should_Return_List_Of_Flights_Matching_Parameters()
+    {
+        // Arrange
+        List<string> departingFrom = new() { "MAN", "AGP" };
+        string travelingTo = "PMI";
+        DateTime departureDate = DateTime.Parse("2023-06-15");
+
+        List<Flight> expectedResult = new()
+        {
+            GetFlights()[2], GetFlights()[3]
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+    [Test]
+    public void Search_With_DepartingFrom_Empty_Should_Return_List_Of_Flights_Matching_Any_Departure_Airport()
+    {
+        // Arrange
+        List<string> departingFrom = new();
+        string travelingTo = "PMI";
+        DateTime departureDate = DateTime.Parse("2023-06-15");
+
+        List<Flight> flights = GetFlights();
+        List<Flight> expectedResult = new()
+        {
+            flights[2], flights[3], flights[4]
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+    [Test]
     public void Search_With_DepartingFrom_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = null;
+        List<string> departingFrom = null;
         string travelingTo = "PMI";
         DateTime departureDate = DateTime.Parse("2023-06-15");
 
@@ -72,7 +115,7 @@ internal class FlightSearchServiceTests
     public void Search_With_TravelingTo_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = null;
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
@@ -87,7 +130,7 @@ internal class FlightSearchServiceTests
     public void Search_With_Input_Parameters_Not_Matching_Any_Flights_Should_Return_Empty_List_Of_Flights()
     {
         // Arrange
-        string departingFrom = "ABC";
+        List<string> departingFrom = new() { "ABC" };
         string travelingTo = "DEF";
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
@@ -107,8 +150,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 1,
                 Airline = "First Class Air",
-                From = "MAN",
-                To = "TFS",
+                DepartingFrom = "MAN",
+                TravelingTo = "TFS",
                 Price = 470,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -116,8 +159,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -125,8 +168,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 3,
                 Airline = "Trans American Airlines",
-                From = "MAN",
-                To = "PMI",
+                DepartingFrom = "MAN",
+                TravelingTo = "PMI",
                 Price = 170,
                 DepartureDate = DateTime.Parse("2023-06-15")
             },
@@ -134,9 +177,18 @@ internal class FlightSearchServiceTests
             {
                 Id = 4,
                 Airline = "Trans American Airlines",
-                From = "AGP",
-                To = "PMI",
+                DepartingFrom = "AGP",
+                TravelingTo = "PMI",
                 Price = 240,
+                DepartureDate = DateTime.Parse("2023-06-15")
+            },
+            new()
+            {
+                Id = 5,
+                Airline = "Trans American Airlines",
+                DepartingFrom = "TFS",
+                TravelingTo = "PMI",
+                Price = 200,
                 DepartureDate = DateTime.Parse("2023-06-15")
             }
         };
