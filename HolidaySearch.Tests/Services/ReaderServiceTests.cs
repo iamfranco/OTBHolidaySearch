@@ -2,7 +2,7 @@
 using HolidaySearch.Services;
 
 namespace HolidaySearch.Tests.Services;
-internal class FlightReaderServiceTests
+internal class ReaderServiceTests
 {
     private ReaderService<Flight> _flightReaderService;
 
