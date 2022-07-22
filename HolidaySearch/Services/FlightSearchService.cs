@@ -23,7 +23,7 @@ public class FlightSearchService
         List<Flight> flights = _flightReaderService.Read();
 
         return flights.Where(flight =>
-            flight.From == departingFrom &&
+            (departingFrom is null || flight.From == departingFrom) &&
             flight.To == travelingTo &&
             flight.DepartureDate == departureDate).ToList();
     }
