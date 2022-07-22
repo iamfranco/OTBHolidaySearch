@@ -73,6 +73,22 @@ internal class HotelSearchServiceTests
             options => options.WithStrictOrdering());
     }
 
+    [Test]
+    public void Search_With_Input_Parameters_Not_Matching_Any_Hotel_Should_Return_Empty_List_Of_Hotels()
+    {
+        // Arrange
+        string localAirport = "ABC";
+        DateTime arrivalDate = DateTime.Parse("2022-11-05");
+        int duration = 7;
+
+        // Act
+        List<Hotel> result = _hotelSearchService.Search(localAirport, arrivalDate, duration);
+
+        // Assert
+        result.Should().BeOfType(typeof(List<Hotel>));
+        result.Count.Should().Be(0);
+    }
+
     private static List<Hotel> GetHotels()
     {
         return new()
