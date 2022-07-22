@@ -3,6 +3,19 @@
 namespace HolidaySearch.Tests.Models;
 internal class HolidayTests
 {
+    private Flight _flight;
+    private Hotel _hotel;
+    private Holiday _holiday;
+
+    [SetUp]
+    public void Setup()
+    {
+        // Arrange
+        _flight = GetFlight();
+        _hotel = GetHotel();
+        _holiday = new Holiday(_flight, _hotel);
+    }
+
     [Test]
     public void Constructor_With_Null_Flight_Input_Should_Throw_ArgumentNullException()
     {
@@ -11,8 +24,7 @@ internal class HolidayTests
         Hotel hotel = GetHotel();
 
         // Act
-        Holiday holiday;
-        Action act = () => holiday = new Holiday(flight, hotel);
+        Action act = () => _holiday = new Holiday(flight, hotel);
 
         // Assert
         act.Should().Throw<ArgumentNullException>();
@@ -26,11 +38,30 @@ internal class HolidayTests
         Hotel hotel = null;
 
         // Act
-        Holiday holiday;
-        Action act = () => holiday = new Holiday(flight, hotel);
+        Action act = () => _holiday = new Holiday(flight, hotel);
 
         // Assert
         act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Test]
+    public void Flight_Should_Return_Constructor_Input_Flight()
+    {
+        // Act
+        Flight result = _holiday.Flight;
+
+        // Act
+        result.Should().BeEquivalentTo(_flight);
+    }
+
+    [Test]
+    public void Hotel_Should_Return_Constructor_Input_Hotel()
+    {
+        // Act
+        Hotel result = _holiday.Hotel;
+
+        // Act
+        result.Should().BeEquivalentTo(_hotel);
     }
 
     private Flight GetFlight()

@@ -1,8 +1,8 @@
 ﻿namespace HolidaySearch.Models;
 public class Holiday
 {
-    private Flight _flight;
-    private Hotel _hotel;
+    public Flight Flight { get; }
+    public Hotel Hotel { get; }
 
     public Holiday(Flight flight, Hotel hotel)
     {
@@ -12,7 +12,7 @@ public class Holiday
         if (hotel is null)
             throw new ArgumentNullException(nameof(hotel));
 
-        _flight = flight;
-        _hotel = hotel;
+        Flight = flight;
+        Hotel = hotel;
     }
 }
