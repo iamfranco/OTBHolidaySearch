@@ -1,7 +1,7 @@
 ﻿using HolidaySearch.Models;
 
 namespace HolidaySearch.Services;
-public interface IFlightReaderService
+public interface IReaderService<T>
 {
-    List<Flight> Read();
+    List<T> Read();
 }

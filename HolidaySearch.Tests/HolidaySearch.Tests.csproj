@@ -30,6 +30,9 @@
     <None Update="Services\TestDataFiles\TestFlightData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Services\TestDataFiles\TestHotelData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

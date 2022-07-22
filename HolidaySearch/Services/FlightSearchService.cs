@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace HolidaySearch.Services;
 public class FlightSearchService
 {
-    private IFlightReaderService _flightReaderService;
+    private IReaderService<Flight> _flightReaderService;
 
-    public FlightSearchService(IFlightReaderService flightReaderService)
+    public FlightSearchService(IReaderService<Flight> flightReaderService)
     {
         if (flightReaderService is null)
             throw new ArgumentNullException(nameof(flightReaderService));
