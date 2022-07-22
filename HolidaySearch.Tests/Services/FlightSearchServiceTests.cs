@@ -83,6 +83,22 @@ internal class FlightSearchServiceTests
         act.Should().Throw<ArgumentNullException>();
     }
 
+    [Test]
+    public void Search_With_Input_Parameters_Not_Matching_Any_Flights_Should_Return_Empty_List_Of_Flights()
+    {
+        // Arrange
+        string departingFrom = "ABC";
+        string travelingTo = "DEF";
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeOfType(typeof(List<Flight>));
+        result.Count.Should().Be(0);
+    }
+
     private static List<Flight> GetFlights()
     {
         return new()
