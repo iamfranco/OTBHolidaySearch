@@ -19,4 +19,17 @@ internal class HotelSearchServiceTests
         _hotelReaderServiceMock = new Mock<IReaderService<Hotel>>();
         _hotelSearchService = new HotelSearchService(_hotelReaderServiceMock.Object);
     }
+
+    [Test]
+    public void Constructor_With_Null_Input_Should_Throw_ArgumentNullException()
+    {
+        // Arrange
+        IReaderService<Hotel> hotelReaderService = null;
+
+        // Act
+        Action act = () => _hotelSearchService = new HotelSearchService(hotelReaderService);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>();
+    }
 }

@@ -7,6 +7,9 @@ public class HotelSearchService
 
     public HotelSearchService(IReaderService<Hotel> hotelReaderService)
     {
+        if (hotelReaderService is null)
+            throw new ArgumentNullException(nameof(hotelReaderService));
+
         _hotelReaderService = hotelReaderService;
     }
 }
