@@ -4,7 +4,7 @@ using HolidaySearch.Services;
 namespace HolidaySearch.Tests.Services;
 internal class FlightReaderServiceTests
 {
-    private FlightReaderService _flightReaderService;
+    private ReaderService<Flight> _flightReaderService;
 
     [Test]
     public void Constructor_With_Null_Input_Should_Throw_ArgumentNullException()
@@ -13,7 +13,7 @@ internal class FlightReaderServiceTests
         string filePath = null;
 
         // Act
-        Action act = () => _flightReaderService = new FlightReaderService(filePath);
+        Action act = () => _flightReaderService = new ReaderService<Flight>(filePath);
 
         // Assert
         act.Should().Throw<ArgumentNullException>();
@@ -24,7 +24,7 @@ internal class FlightReaderServiceTests
     {
         // Arrange
         string filePath = Directory.GetCurrentDirectory() + @"\Services\TestDataFiles\TestFlightData.json";
-        _flightReaderService = new FlightReaderService(filePath);
+        _flightReaderService = new ReaderService<Flight>(filePath);
         List<Flight> expectedResult = GetFlightsForTestFlightDataFile();
 
         // Act
@@ -40,7 +40,7 @@ internal class FlightReaderServiceTests
     {
         // Arrange
         string filePath = Directory.GetCurrentDirectory() + @"NonExistentFile.json";
-        _flightReaderService = new FlightReaderService(filePath);
+        _flightReaderService = new ReaderService<Flight>(filePath);
 
         // Act
         Action act = () => _flightReaderService.Read();

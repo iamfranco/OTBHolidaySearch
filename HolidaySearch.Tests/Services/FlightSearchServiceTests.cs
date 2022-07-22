@@ -6,13 +6,13 @@ namespace HolidaySearch.Tests.Services;
 internal class FlightSearchServiceTests
 {
     private FlightSearchService _flightSearchService;
-    private Mock<IFlightReaderService> _flightReaderServiceMock;
+    private Mock<IReaderService<Flight>> _flightReaderServiceMock;
 
     [SetUp]
     public void Setup()
     {
         // Arrange
-        _flightReaderServiceMock = new Mock<IFlightReaderService>();
+        _flightReaderServiceMock = new Mock<IReaderService<Flight>>();
         _flightSearchService = new FlightSearchService(_flightReaderServiceMock.Object);
 
         _flightReaderServiceMock.Setup(x => x.Read())
@@ -23,7 +23,7 @@ internal class FlightSearchServiceTests
     public void Constructor_With_Null_Input_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        IFlightReaderService flightReaderService = null;
+        IReaderService<Flight> flightReaderService = null;
 
         // Act
         Action act = () => _flightSearchService = new FlightSearchService(flightReaderService);

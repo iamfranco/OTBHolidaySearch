@@ -1,17 +1,11 @@
-﻿using HolidaySearch.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace HolidaySearch.Services;
-public class FlightReaderService : IFlightReaderService
+public class ReaderService<T> : IReaderService<T>
 {
     private string _filePath;
 
-    public FlightReaderService(string filePath)
+    public ReaderService(string filePath)
     {
         if (filePath is null)
             throw new ArgumentNullException(nameof(filePath));
@@ -19,12 +13,10 @@ public class FlightReaderService : IFlightReaderService
         _filePath = filePath;
     }
 
-    public List<Flight> Read()
+    public List<T> Read()
     {
         string jsonString = File.ReadAllText(_filePath);
 
-        List<Flight> flights = JsonSerializer.Deserialize<List<Flight>>(jsonString);
-
-        return flights;
+        return JsonSerializer.Deserialize<List<T>>(jsonString);
     }
 }
