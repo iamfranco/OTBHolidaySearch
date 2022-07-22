@@ -75,6 +75,28 @@ internal class FlightSearchServiceTests
             options => options.WithStrictOrdering());
     }
 
+    [Test]
+    public void Search_With_TravelingTo_Null_Should_Return_List_Of_Flights_Matching_All_Non_Null_Parameters()
+    {
+        // Arrange
+        string departingFrom = "MAN";
+        string travelingTo = null;
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+
+        List<Flight> expectedResult = new()
+        {
+            GetFlights()[0],
+            GetFlights()[1],
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
     private static List<Flight> GetFlights()
     {
         return new()

@@ -24,7 +24,7 @@ public class FlightSearchService
 
         return flights.Where(flight =>
             (departingFrom is null || flight.From == departingFrom) &&
-            flight.To == travelingTo &&
+            (travelingTo is null || flight.To == travelingTo) &&
             flight.DepartureDate == departureDate).ToList();
     }
 }
