@@ -1,5 +1,5 @@
 ﻿using HolidaySearchLibrary.Models;
-using HolidaySearchLibrary.Services;
+using HolidaySearchLibrary.Services.ReaderServices;
 
 namespace HolidaySearchLibrary.Tests.Services;
 internal class ReaderServiceTests
