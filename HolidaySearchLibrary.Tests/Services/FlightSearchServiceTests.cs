@@ -33,10 +33,10 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
-    public void Search_Should_Return_List_Of_Flights_Matching_Parameters()
+    public void Search_With_DepartingFrom_One_Airport_Should_Return_List_Of_Flights_Matching_Parameters()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
@@ -54,10 +54,31 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
+    public void Search_With_DepartingFrom_Multiple_Airports_Should_Return_List_Of_Flights_Matching_Parameters()
+    {
+        // Arrange
+        List<string> departingFrom = new() { "MAN", "AGP" };
+        string travelingTo = "PMI";
+        DateTime departureDate = DateTime.Parse("2023-06-15");
+
+        List<Flight> expectedResult = new()
+        {
+            GetFlights()[2], GetFlights()[3]
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+    [Test]
     public void Search_With_DepartingFrom_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = null;
+        List<string> departingFrom = null;
         string travelingTo = "PMI";
         DateTime departureDate = DateTime.Parse("2023-06-15");
 
@@ -72,7 +93,7 @@ internal class FlightSearchServiceTests
     public void Search_With_TravelingTo_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = null;
         DateTime departureDate = DateTime.Parse("2023-07-01");
 
@@ -87,7 +108,7 @@ internal class FlightSearchServiceTests
     public void Search_With_Input_Parameters_Not_Matching_Any_Flights_Should_Return_Empty_List_Of_Flights()
     {
         // Arrange
-        string departingFrom = "ABC";
+        List<string> departingFrom = new() { "ABC" };
         string travelingTo = "DEF";
         DateTime departureDate = DateTime.Parse("2023-07-01");
 

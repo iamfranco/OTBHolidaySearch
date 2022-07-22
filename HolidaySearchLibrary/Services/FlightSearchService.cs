@@ -13,7 +13,7 @@ public class FlightSearchService : IFlightSearchService
         _flightReaderService = flightReaderService;
     }
 
-    public List<Flight> Search(string departingFrom, string travelingTo, DateTime departureDate)
+    public List<Flight> Search(List<string> departingFrom, string travelingTo, DateTime departureDate)
     {
         if (departingFrom is null)
             throw new ArgumentNullException(nameof(departingFrom));
@@ -24,7 +24,7 @@ public class FlightSearchService : IFlightSearchService
         List<Flight> flights = _flightReaderService.Read();
 
         return flights.Where(flight =>
-            flight.From == departingFrom &&
+            departingFrom.Contains(flight.From) &&
             flight.To == travelingTo &&
             flight.DepartureDate == departureDate).ToList();
     }

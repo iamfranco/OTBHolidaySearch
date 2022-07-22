@@ -9,7 +9,7 @@ internal class HolidaySearchTests
     public void Constructor_With_Null_DepartingFrom_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = null;
+        List<string> departingFrom = null;
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023/07/01");
         int duration = 7;
@@ -29,7 +29,7 @@ internal class HolidaySearchTests
     public void Constructor_With_Null_TravelingTo_Should_Throw_ArgumentNullException()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = null;
         DateTime departureDate = DateTime.Parse("2023/07/01");
         int duration = 7;
@@ -49,7 +49,7 @@ internal class HolidaySearchTests
     public void Constructor_With_Customer_1_Input_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
-        string departingFrom = "MAN";
+        List<string> departingFrom = new() { "MAN" };
         string travelingTo = "AGP";
         DateTime departureDate = DateTime.Parse("2023/07/01");
         int duration = 7;

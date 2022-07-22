@@ -3,5 +3,5 @@
 namespace HolidaySearchLibrary.Services;
 public interface IFlightSearchService
 {
-    List<Flight> Search(string departingFrom, string travelingTo, DateTime departureDate);
+    List<Flight> Search(List<string> departingFrom, string travelingTo, DateTime departureDate);
 }

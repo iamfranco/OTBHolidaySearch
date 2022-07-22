@@ -18,7 +18,7 @@ public class HolidaySearchService
         _hotelSearchService = hotelSearchService;
     }
 
-    public List<Holiday> Search(string departingFrom, string travelingTo, DateTime departureDate, int duration)
+    public List<Holiday> Search(List<string> departingFrom, string travelingTo, DateTime departureDate, int duration)
     {
         if (departingFrom is null)
             throw new ArgumentNullException(nameof(departingFrom));
