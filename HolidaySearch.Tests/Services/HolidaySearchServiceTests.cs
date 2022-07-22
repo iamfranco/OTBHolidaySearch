@@ -18,4 +18,26 @@ internal class HolidaySearchServiceTests
         _holidaySearchService = new HolidaySearchService(_flightSearchServiceMock.Object, 
             _hotelSearchServiceMock.Object);
     }
+
+    [Test]
+    public void Constructor_With_FlightSearchService_Null_Input_Should_Throw_ArgumentNullException()
+    {
+        // Act
+        Action act = () => _holidaySearchService = new HolidaySearchService(null,
+            _hotelSearchServiceMock.Object);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>();
+    }
+
+    [Test]
+    public void Constructor_With_HotelSearchService_Null_Input_Should_Throw_ArgumentNullException()
+    {
+        // Act
+        Action act = () => _holidaySearchService = new HolidaySearchService(_flightSearchServiceMock.Object,
+            null);
+
+        // Assert
+        act.Should().Throw<ArgumentNullException>();
+    }
 }

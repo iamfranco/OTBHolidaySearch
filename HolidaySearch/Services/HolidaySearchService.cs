@@ -6,6 +6,12 @@ public class HolidaySearchService
 
     public HolidaySearchService(IFlightSearchService flightSearchService, IHotelSearchService hotelSearchService)
     {
+        if (flightSearchService is null)
+            throw new ArgumentNullException(nameof(flightSearchService));
+
+        if (hotelSearchService is null)
+            throw new ArgumentNullException(nameof(hotelSearchService));
+
         _flightSearchService = flightSearchService;
         _hotelSearchService = hotelSearchService;
     }
