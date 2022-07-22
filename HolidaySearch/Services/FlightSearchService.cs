@@ -1,7 +1,7 @@
 ﻿using HolidaySearch.Models;
 
 namespace HolidaySearch.Services;
-public class FlightSearchService
+public class FlightSearchService : IFlightSearchService
 {
     private IReaderService<Flight> _flightReaderService;
 
