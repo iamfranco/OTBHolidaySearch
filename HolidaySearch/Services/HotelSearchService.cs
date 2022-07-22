@@ -12,4 +12,12 @@ public class HotelSearchService
 
         _hotelReaderService = hotelReaderService;
     }
+
+    public void Search(string localAirport, DateTime arrivalDate, int duration)
+    {
+        if (localAirport is null)
+            throw new ArgumentNullException(nameof(localAirport));
+
+        throw new NotImplementedException();
+    }
 }
