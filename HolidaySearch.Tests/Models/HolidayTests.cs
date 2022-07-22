@@ -50,7 +50,7 @@ internal class HolidayTests
         // Act
         Flight result = _holiday.Flight;
 
-        // Act
+        // Assert
         result.Should().BeEquivalentTo(_flight);
     }
 
@@ -60,8 +60,21 @@ internal class HolidayTests
         // Act
         Hotel result = _holiday.Hotel;
 
-        // Act
+        // Assert
         result.Should().BeEquivalentTo(_hotel);
+    }
+
+    [Test]
+    public void TotalPrice_Should_Return_Total_Of_Flight_And_Hotel_Prices()
+    {
+        // Arrange
+        int expectedResult = 1170;
+
+        // Act
+        int result = _holiday.TotalPrice;
+
+        // Assert
+        result.Should().Be(expectedResult);
     }
 
     private Flight GetFlight()

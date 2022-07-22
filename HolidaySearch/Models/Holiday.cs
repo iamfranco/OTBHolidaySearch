@@ -3,6 +3,7 @@ public class Holiday
 {
     public Flight Flight { get; }
     public Hotel Hotel { get; }
+    public int TotalPrice => Flight.Price + Hotel.PricePerNight * Hotel.Nights;
 
     public Holiday(Flight flight, Hotel hotel)
     {
