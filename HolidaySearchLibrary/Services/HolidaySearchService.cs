@@ -1,10 +1,12 @@
 ﻿using HolidaySearchLibrary.Models;
+using HolidaySearchLibrary.Services.FlightServices;
+using HolidaySearchLibrary.Services.HotelServices;
 
 namespace HolidaySearchLibrary.Services;
 public class HolidaySearchService
 {
-    private IFlightSearchService _flightSearchService;
-    private IHotelSearchService _hotelSearchService;
+    private readonly IFlightSearchService _flightSearchService;
+    private readonly IHotelSearchService _hotelSearchService;
 
     public HolidaySearchService(IFlightSearchService flightSearchService, IHotelSearchService hotelSearchService)
     {

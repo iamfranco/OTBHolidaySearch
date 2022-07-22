@@ -1,5 +1,6 @@
 ﻿using HolidaySearchLibrary.Models;
-using HolidaySearchLibrary.Services;
+using HolidaySearchLibrary.Services.FlightServices;
+using HolidaySearchLibrary.Services.ReaderServices;
 using Moq;
 
 namespace HolidaySearchLibrary.Tests.Services;
