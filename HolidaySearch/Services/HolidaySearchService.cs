@@ -39,6 +39,8 @@ public class HolidaySearchService
             }
         }
 
+        holidays.OrderBy(holiday => holiday.TotalPrice);
+
         return holidays;
     }
 }

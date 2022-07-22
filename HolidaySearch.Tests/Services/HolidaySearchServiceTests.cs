@@ -98,6 +98,32 @@ internal class HolidaySearchServiceTests
         result.Should().BeEquivalentTo(expectedResult);
     }
 
+    [Test]
+    public void Search_Should_Return_Holidays_Ordered_By_TotalPrice_Ascending()
+    {
+        // Arrange
+        string departingFrom = "MAN";
+        string travelingTo = "AGP";
+        DateTime departureDate = DateTime.Parse("2023-07-01");
+        int duration = 7;
+
+        _flightSearchServiceMock.Setup(x => x.Search(departingFrom, travelingTo, departureDate))
+            .Returns(GetFlights());
+
+        _hotelSearchServiceMock.Setup(x => x.Search(travelingTo, departureDate, duration))
+            .Returns(GetHotels());
+
+        List<Holiday> expectedResult = GetHolidayCombinations()
+            .OrderBy(holiday => holiday.TotalPrice)
+            .ToList();
+
+        // Act
+        List<Holiday> result = _holidaySearchService.Search(departingFrom, travelingTo, departureDate, duration);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult);
+    }
+
     private static List<Flight> GetFlights()
     {
         return new()
