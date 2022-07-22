@@ -133,8 +133,8 @@ internal class HolidaySearchServiceTests
             {
                 Id = 1,
                 Airline = "First Class Air",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 470,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -142,8 +142,8 @@ internal class HolidaySearchServiceTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             }

@@ -59,8 +59,8 @@ internal class HolidaySearchTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -102,8 +102,8 @@ internal class HolidaySearchTests
             {
                 Id = 6,
                 Airline = "Fresh Airways",
-                From = "LGW",
-                To = "PMI",
+                DepartingFrom = "LGW",
+                TravelingTo = "PMI",
                 Price = 75,
                 DepartureDate = DateTime.Parse("2023-06-15")
             },
@@ -145,8 +145,8 @@ internal class HolidaySearchTests
             {
                 Id = 7,
                 Airline = "Trans American Airlines",
-                From = "MAN",
-                To = "LPA",
+                DepartingFrom = "MAN",
+                TravelingTo = "LPA",
                 Price = 125,
                 DepartureDate = DateTime.Parse("2022-11-10")
             },

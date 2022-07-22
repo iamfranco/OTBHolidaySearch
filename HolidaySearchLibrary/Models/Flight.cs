@@ -10,10 +10,10 @@ public class Flight
     public string Airline { get; set; }
 
     [JsonPropertyName("from")]
-    public string From { get; set; }
+    public string DepartingFrom { get; set; }
 
     [JsonPropertyName("to")]
-    public string To { get; set; }
+    public string TravelingTo { get; set; }
 
     [JsonPropertyName("price")]
     public int Price { get; set; }

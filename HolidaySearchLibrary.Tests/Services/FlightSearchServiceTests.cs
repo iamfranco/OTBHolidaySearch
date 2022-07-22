@@ -150,8 +150,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 1,
                 Airline = "First Class Air",
-                From = "MAN",
-                To = "TFS",
+                DepartingFrom = "MAN",
+                TravelingTo = "TFS",
                 Price = 470,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -159,8 +159,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 2,
                 Airline = "Oceanic Airlines",
-                From = "MAN",
-                To = "AGP",
+                DepartingFrom = "MAN",
+                TravelingTo = "AGP",
                 Price = 245,
                 DepartureDate = DateTime.Parse("2023-07-01")
             },
@@ -168,8 +168,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 3,
                 Airline = "Trans American Airlines",
-                From = "MAN",
-                To = "PMI",
+                DepartingFrom = "MAN",
+                TravelingTo = "PMI",
                 Price = 170,
                 DepartureDate = DateTime.Parse("2023-06-15")
             },
@@ -177,8 +177,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 4,
                 Airline = "Trans American Airlines",
-                From = "AGP",
-                To = "PMI",
+                DepartingFrom = "AGP",
+                TravelingTo = "PMI",
                 Price = 240,
                 DepartureDate = DateTime.Parse("2023-06-15")
             },
@@ -186,8 +186,8 @@ internal class FlightSearchServiceTests
             {
                 Id = 5,
                 Airline = "Trans American Airlines",
-                From = "TFS",
-                To = "PMI",
+                DepartingFrom = "TFS",
+                TravelingTo = "PMI",
                 Price = 200,
                 DepartureDate = DateTime.Parse("2023-06-15")
             }
