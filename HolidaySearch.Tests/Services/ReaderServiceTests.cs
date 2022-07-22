@@ -36,6 +36,23 @@ internal class ReaderServiceTests
     }
 
     [Test]
+    public void Read_Should_Return_List_Of_Hotel_Matching_FilePath_Json_Content()
+    {
+        // Arrange
+        string filePath = Directory.GetCurrentDirectory() + @"\Services\TestDataFiles\TestHotelData.json";
+        ReaderService<Hotel> hotelReaderService = new ReaderService<Hotel>(filePath);
+        List<Hotel> expectedResult = GetHotelsForTestHotelDataFile();
+
+        // Act
+        List<Hotel> result = hotelReaderService.Read();
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+
+    [Test]
     public void Read_When_FilePath_File_Does_Not_Exist_Should_Throw_FileNotFoundException()
     {
         // Arrange
@@ -80,6 +97,40 @@ internal class ReaderServiceTests
                 Price = 170,
                 DepartureDate = DateTime.Parse("2023-06-15")
             }
+        };
+    }
+
+    private static List<Hotel> GetHotelsForTestHotelDataFile()
+    {
+        return new()
+        {
+            new()
+            {
+                Id = 1,
+                Name = "Iberostar Grand Portals Nous",
+                ArrivalDate = DateTime.Parse("2022-11-05"),
+                PricePerNight = 100,
+                LocalAirports = new List<string>() {"TFS"},
+                Nights = 7
+            },
+            new()
+            {
+                Id = 2,
+                Name = "Laguna Park 2",
+                ArrivalDate = DateTime.Parse("2022-11-05"),
+                PricePerNight = 50,
+                LocalAirports = new List<string>() {"TFS"},
+                Nights = 7
+            },
+            new()
+            {
+                Id = 3,
+                Name = "Sol Katmandu Park & Resort",
+                ArrivalDate = DateTime.Parse("2023-06-15"),
+                PricePerNight = 59,
+                LocalAirports = new List<string>() {"PMI"},
+                Nights = 14
+            },
         };
     }
 }
