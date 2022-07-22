@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HolidaySearch\HolidaySearchLibrary.csproj" />
+    <ProjectReference Include="..\HolidaySearchLibrary\HolidaySearchLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
