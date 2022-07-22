@@ -1,5 +1,6 @@
 ﻿using HolidaySearchLibrary.Models;
 using HolidaySearchLibrary.Services.FlightServices;
+using HolidaySearchLibrary.Services.HotelServices;
 
 namespace HolidaySearchLibrary.Services;
 public class HolidaySearchService
