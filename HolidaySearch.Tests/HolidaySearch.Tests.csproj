@@ -21,4 +21,14 @@
     <ProjectReference Include="..\HolidaySearch\HolidaySearch.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\TestDataFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Services\TestDataFiles\TestFlightData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
