@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HolidaySearch.Services;
-public class FlightReaderService
+public class FlightReaderService : IFlightReaderService
 {
     private string _filePath;
 
