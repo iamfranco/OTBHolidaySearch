@@ -86,4 +86,46 @@ internal class HolidaySearchTests
         // Assert
         results.First().Should().BeEquivalentTo(expectedFirstResult);
     }
+
+    [Test]
+    public void Constructor_With_Customer_2_Input_Then_Results_First_Should_Return_Correct_Holiday()
+    {
+        // Arrange
+        List<string> departingFrom = new List<string>() { "LCY", "LHR", "LGW", "LTN", "STN", "SEN" };
+        string travelingTo = "PMI";
+        DateTime departureDate = DateTime.Parse("2023/06/15");
+        int duration = 10;
+
+        Holiday expectedFirstResult = new(
+            flight: new()
+            {
+                Id = 6,
+                Airline = "Fresh Airways",
+                From = "LGW",
+                To = "PMI",
+                Price = 75,
+                DepartureDate = DateTime.Parse("2023-06-15")
+            },
+            hotel: new()
+            {
+                Id = 5,
+                Name = "Sol Katmandu Park & Resort",
+                ArrivalDate = DateTime.Parse("2023-06-15"),
+                PricePerNight = 60,
+                LocalAirports = new List<string>() { "PMI" },
+                Nights = 10
+            });
+
+        // Act
+        _holidaySearch = new HolidaySearch(
+            departingFrom,
+            travelingTo,
+            departureDate,
+            duration);
+
+        List<Holiday> results = _holidaySearch.Results;
+
+        // Assert
+        results.First().Should().BeEquivalentTo(expectedFirstResult);
+    }
 }
