@@ -35,6 +35,20 @@ internal class FlightReaderServiceTests
             options => options.WithStrictOrdering());
     }
 
+    [Test]
+    public void Read_When_FilePath_File_Does_Not_Exist_Should_Throw_FileNotFoundException()
+    {
+        // Arrange
+        string filePath = Directory.GetCurrentDirectory() + @"NonExistentFile.json";
+        _flightReaderService = new FlightReaderService(filePath);
+
+        // Act
+        Action act = () => _flightReaderService.Read();
+
+        // Assert
+        act.Should().Throw<FileNotFoundException>();
+    }
+
     private static List<Flight> GetFlightsForTestFlightDataFile()
     {
         return new()
