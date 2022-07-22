@@ -54,26 +54,6 @@ internal class HolidaySearchTests
         DateTime departureDate = DateTime.Parse("2023/07/01");
         int duration = 7;
 
-        Holiday expectedFirstResult = new(
-            flight : new()
-            {
-                Id = 2,
-                Airline = "Oceanic Airlines",
-                DepartingFrom = "MAN",
-                TravelingTo = "AGP",
-                Price = 245,
-                DepartureDate = DateTime.Parse("2023-07-01")
-            },
-            hotel : new()
-            {
-                Id = 9,
-                Name = "Nh Malaga",
-                ArrivalDate = DateTime.Parse("2023-07-01"),
-                PricePerNight = 83,
-                LocalAirports = new List<string>() { "AGP" },
-                Nights = 7
-            });
-
         // Act
         _holidaySearch = new HolidaySearch(
             departingFrom,
@@ -84,8 +64,21 @@ internal class HolidaySearchTests
         List<Holiday> results = _holidaySearch.Results;
 
         // Assert
-        results.First().Should().BeEquivalentTo(expectedFirstResult);
         results.First().TotalPrice.Should().Be(826);
+
+        results.First().Flight.Id.Should().Be(2);
+        results.First().Flight.Airline.Should().Be("Oceanic Airlines");
+        results.First().Flight.DepartingFrom.Should().Be("MAN");
+        results.First().Flight.TravelingTo.Should().Be("AGP");
+        results.First().Flight.Price.Should().Be(245);
+        results.First().Flight.DepartureDate.Should().Be(DateTime.Parse("2023-07-01"));
+
+        results.First().Hotel.Id.Should().Be(9);
+        results.First().Hotel.Name.Should().Be("Nh Malaga");
+        results.First().Hotel.ArrivalDate.Should().Be(DateTime.Parse("2023-07-01"));
+        results.First().Hotel.PricePerNight.Should().Be(83);
+        results.First().Hotel.LocalAirports.Should().BeEquivalentTo(new List<string>() { "AGP" });
+        results.First().Hotel.Nights.Should().Be(7);
     }
 
     [Test]
@@ -97,26 +90,6 @@ internal class HolidaySearchTests
         DateTime departureDate = DateTime.Parse("2023/06/15");
         int duration = 10;
 
-        Holiday expectedFirstResult = new(
-            flight: new()
-            {
-                Id = 6,
-                Airline = "Fresh Airways",
-                DepartingFrom = "LGW",
-                TravelingTo = "PMI",
-                Price = 75,
-                DepartureDate = DateTime.Parse("2023-06-15")
-            },
-            hotel: new()
-            {
-                Id = 5,
-                Name = "Sol Katmandu Park & Resort",
-                ArrivalDate = DateTime.Parse("2023-06-15"),
-                PricePerNight = 60,
-                LocalAirports = new List<string>() { "PMI" },
-                Nights = 10
-            });
-
         // Act
         _holidaySearch = new HolidaySearch(
             departingFrom,
@@ -127,8 +100,21 @@ internal class HolidaySearchTests
         List<Holiday> results = _holidaySearch.Results;
 
         // Assert
-        results.First().Should().BeEquivalentTo(expectedFirstResult);
         results.First().TotalPrice.Should().Be(675);
+
+        results.First().Flight.Id.Should().Be(6);
+        results.First().Flight.Airline.Should().Be("Fresh Airways");
+        results.First().Flight.DepartingFrom.Should().Be("LGW");
+        results.First().Flight.TravelingTo.Should().Be("PMI");
+        results.First().Flight.Price.Should().Be(75);
+        results.First().Flight.DepartureDate.Should().Be(DateTime.Parse("2023-06-15"));
+
+        results.First().Hotel.Id.Should().Be(5);
+        results.First().Hotel.Name.Should().Be("Sol Katmandu Park & Resort");
+        results.First().Hotel.ArrivalDate.Should().Be(DateTime.Parse("2023-06-15"));
+        results.First().Hotel.PricePerNight.Should().Be(60);
+        results.First().Hotel.LocalAirports.Should().BeEquivalentTo(new List<string>() { "PMI" });
+        results.First().Hotel.Nights.Should().Be(10);
     }
 
     [Test]
@@ -140,26 +126,6 @@ internal class HolidaySearchTests
         DateTime departureDate = DateTime.Parse("2022/11/10");
         int duration = 14;
 
-        Holiday expectedFirstResult = new(
-            flight: new()
-            {
-                Id = 7,
-                Airline = "Trans American Airlines",
-                DepartingFrom = "MAN",
-                TravelingTo = "LPA",
-                Price = 125,
-                DepartureDate = DateTime.Parse("2022-11-10")
-            },
-            hotel: new()
-            {
-                Id = 6,
-                Name = "Club Maspalomas Suites and Spa",
-                ArrivalDate = DateTime.Parse("2022-11-10"),
-                PricePerNight = 75,
-                LocalAirports = new List<string>() { "LPA" },
-                Nights = 14
-            });
-
         // Act
         _holidaySearch = new HolidaySearch(
             departingFrom,
@@ -170,7 +136,20 @@ internal class HolidaySearchTests
         List<Holiday> results = _holidaySearch.Results;
 
         // Assert
-        results.First().Should().BeEquivalentTo(expectedFirstResult);
         results.First().TotalPrice.Should().Be(1175);
+
+        results.First().Flight.Id.Should().Be(7);
+        results.First().Flight.Airline.Should().Be("Trans American Airlines");
+        results.First().Flight.DepartingFrom.Should().Be("MAN");
+        results.First().Flight.TravelingTo.Should().Be("LPA");
+        results.First().Flight.Price.Should().Be(125);
+        results.First().Flight.DepartureDate.Should().Be(DateTime.Parse("2022-11-10"));
+
+        results.First().Hotel.Id.Should().Be(6);
+        results.First().Hotel.Name.Should().Be("Club Maspalomas Suites and Spa");
+        results.First().Hotel.ArrivalDate.Should().Be(DateTime.Parse("2022-11-10"));
+        results.First().Hotel.PricePerNight.Should().Be(75);
+        results.First().Hotel.LocalAirports.Should().BeEquivalentTo(new List<string>() { "LPA" });
+        results.First().Hotel.Nights.Should().Be(14);
     }
 }
