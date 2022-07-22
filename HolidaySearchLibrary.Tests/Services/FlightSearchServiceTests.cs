@@ -75,6 +75,28 @@ internal class FlightSearchServiceTests
     }
 
     [Test]
+    public void Search_With_DepartingFrom_Empty_Should_Return_List_Of_Flights_Matching_Any_Departure_Airport()
+    {
+        // Arrange
+        List<string> departingFrom = new();
+        string travelingTo = "PMI";
+        DateTime departureDate = DateTime.Parse("2023-06-15");
+
+        List<Flight> flights = GetFlights();
+        List<Flight> expectedResult = new()
+        {
+            flights[2], flights[3], flights[4]
+        };
+
+        // Act
+        List<Flight> result = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
+
+        // Assert
+        result.Should().BeEquivalentTo(expectedResult,
+            options => options.WithStrictOrdering());
+    }
+
+    [Test]
     public void Search_With_DepartingFrom_Null_Should_Throw_ArgumentNullException()
     {
         // Arrange
@@ -158,6 +180,15 @@ internal class FlightSearchServiceTests
                 From = "AGP",
                 To = "PMI",
                 Price = 240,
+                DepartureDate = DateTime.Parse("2023-06-15")
+            },
+            new()
+            {
+                Id = 5,
+                Airline = "Trans American Airlines",
+                From = "TFS",
+                To = "PMI",
+                Price = 200,
                 DepartureDate = DateTime.Parse("2023-06-15")
             }
         };
