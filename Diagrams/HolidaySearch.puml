@@ -1,0 +1,133 @@
+@startuml "HolidaySearch"
+skinparam ClassAttributeIconSize 0
+
+class Flight {
+    + Id : int
+    + Airline : string
+    + From : string
+    + To : string
+    + Price : int
+    + DepartureDate : DateTime
+}
+
+class Hotel {
+    + Id : int
+    + Name : string
+    + ArrivalDate : DateTime
+    + Price : int
+    + LocalAirports : List<string>
+    + Nights : int
+}
+
+class Holiday {
+    + TotalPrice : int
+    + Flight : Flight
+    + Hotel : Hotel
+}
+
+interface IReaderService<T> <<interface>> {
+    + Read() : List<T>
+}
+
+class ReaderService<T> {
+    - filePath : string
+
+    + ReaderService(filePath : string)
+
+    + Read() : List<T>
+}
+
+interface IFlightSearchService <<interface>> {
+    + Search(\n\
+        DepartingFrom : List<string>, \n\
+        TravelingTo : string, \n\
+        DepartureDate : DateTime, \n\
+    ) : List<Flight>
+}
+
+class FlightSearchService {
+    - flightReaderService : IReaderService<Flight>
+
+    + FlightSearchService(\n\
+        flightReaderService : IReaderService<Flight>)
+
+    + Search(\n\
+        DepartingFrom : List<string>, \n\
+        TravelingTo : string, \n\
+        DepartureDate : DateTime, \n\
+    ) : List<Flight>
+}
+
+interface IHotelSearchService <<interface>> {
+    + Search(\n\
+        LocalAirport : string, \n\
+        ArrivalDate : DateTime, \n\
+        Duration : int \n\
+    ) : List<Hotel>
+}
+
+class HotelSearchService {
+    - hotelReaderService : IReaderService<Hotel>
+
+    + HotelSearchService(\n\
+        hotelReaderService : IReaderService<Hotel>)
+
+    + Search(\n\
+        LocalAirport : string, \n\
+        ArrivalDate : DateTime, \n\
+        Duration : int \n\
+    ) : List<Hotel>
+}
+
+class HolidaySearchService {
+    - FlightSearchService : IFlightSearchService
+    - HotelSearchService : IHotelSearchService 
+
+    + HolidaySearchService(\n\
+        FlightSearchService : IFlightSearchService, \n\
+        HotelSearchService : IHotelSearchService \n\
+    )
+
+    + Search(\n\
+        DepartingFrom : List<string>, \n\
+        TravelingTo : string, \n\
+        DepartureDate : DateTime, \n\
+        Duration : int \n\
+    ) : List<Holiday>
+}
+
+class HolidaySearch {
+    + Results : List<Holiday>
+
+    + HolidaySearch(\n\
+        DepartingFrom : List<string>, \n\
+        TravelingTo : string, \n\
+        DepartureDate : DateTime, \n\
+        Duration : int \n\
+    )
+}
+
+Holiday o-- Flight
+Holiday o-- Hotel
+
+HolidaySearch --> HolidaySearchService
+HolidaySearch --> IFlightSearchService
+HolidaySearch --> IHotelSearchService
+
+HolidaySearchService --> Holiday
+
+HolidaySearchService o-- IFlightSearchService
+HolidaySearchService o-- IHotelSearchService
+
+IFlightSearchService <|.. FlightSearchService
+IHotelSearchService <|.. HotelSearchService
+
+FlightSearchService o-- IReaderService
+HotelSearchService o-- IReaderService
+
+IReaderService <|.. ReaderService
+
+IFlightSearchService --> Flight
+IHotelSearchService --> Hotel
+
+@enduml

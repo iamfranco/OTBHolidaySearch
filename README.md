@@ -28,3 +28,9 @@ dotnet test
 ```
 
 Then you should see all the test cases have passed.
+
+# UML Class Diagram
+
+This is the UML Class Diagram of this solution.
+
+![UML Class Diagram](Diagrams/HolidaySearch.png)
