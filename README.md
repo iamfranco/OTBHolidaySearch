@@ -2,13 +2,13 @@
 
 This is a C# solution to the Holiday Search programming exercise.
 
-The task is to take the two JSON files in `HolidaySearchLibrary/dataFiles` folder:
+The task is to take the two JSON files in `HolidaySearchLibrary/JsonFiles` folder:
 
 ```
 📂HolidaySearchLibrary
-┗ 📂dataFiles
-  ┣ 📜flightData.json
-  ┗ 📜hotelData.json
+┗ 📂JsonFiles
+  ┣ 📜FlightData.json
+  ┗ 📜HotelData.json
 ```
 
 as source data, and create a small library of code that provides a basic holiday search feature.
