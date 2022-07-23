@@ -25,8 +25,8 @@ public class HolidaySearch
     private static HolidaySearchService RegisterServices()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string flightFilePath = currentDirectory + @"\dataFiles\flightData.json";
-        string hotelFilePath = currentDirectory + @"\dataFiles\hotelData.json";
+        string flightFilePath = currentDirectory + @"\JsonFiles\FlightData.json";
+        string hotelFilePath = currentDirectory + @"\JsonFiles\HotelData.json";
 
         IReaderService<Flight> flightReaderService = new ReaderService<Flight>(flightFilePath);
         IReaderService<Hotel> hotelReaderService = new ReaderService<Hotel>(hotelFilePath);

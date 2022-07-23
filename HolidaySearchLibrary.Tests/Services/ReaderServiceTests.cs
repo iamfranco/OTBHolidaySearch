@@ -23,7 +23,7 @@ internal class ReaderServiceTests
     public void Read_Should_Return_List_Of_Flights_Matching_FilePath_Json_Content()
     {
         // Arrange
-        string filePath = Directory.GetCurrentDirectory() + @"\Services\TestDataFiles\TestFlightData.json";
+        string filePath = Directory.GetCurrentDirectory() + @"\Services\TestJsonFiles\TestFlightData.json";
         _flightReaderService = new ReaderService<Flight>(filePath);
         List<Flight> expectedResult = GetFlightsForTestFlightDataFile();
 
@@ -39,7 +39,7 @@ internal class ReaderServiceTests
     public void Read_Should_Return_List_Of_Hotel_Matching_FilePath_Json_Content()
     {
         // Arrange
-        string filePath = Directory.GetCurrentDirectory() + @"\Services\TestDataFiles\TestHotelData.json";
+        string filePath = Directory.GetCurrentDirectory() + @"\Services\TestJsonFiles\TestHotelData.json";
         ReaderService<Hotel> hotelReaderService = new ReaderService<Hotel>(filePath);
         List<Hotel> expectedResult = GetHotelsForTestHotelDataFile();
 
