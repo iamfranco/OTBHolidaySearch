@@ -23,14 +23,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\TestDataFiles\" />
+    <Folder Include="Services\TestJsonFiles\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Services\TestDataFiles\TestFlightData.json">
+    <None Update="Services\TestJsonFiles\TestFlightData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Services\TestDataFiles\TestHotelData.json">
+    <None Update="Services\TestJsonFiles\TestHotelData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
