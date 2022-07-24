@@ -46,7 +46,7 @@ internal class HolidaySearchTests
     }
 
     [Test]
-    public void Constructor_With_Customer_1_Input_Then_Results_First_Should_Return_Correct_Holiday()
+    public void Constructor_With_DepartingFrom_One_Airport_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
         List<string> departingFrom = new() { "MAN" };
@@ -82,7 +82,7 @@ internal class HolidaySearchTests
     }
 
     [Test]
-    public void Constructor_With_Customer_2_Input_Then_Results_First_Should_Return_Correct_Holiday()
+    public void Constructor_With_DepartingFrom_Any_London_Airports_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
         List<string> departingFrom = new List<string>() { "LCY", "LHR", "LGW", "LTN", "STN", "SEN" };
@@ -118,7 +118,7 @@ internal class HolidaySearchTests
     }
 
     [Test]
-    public void Constructor_With_Customer_3_Input_Then_Results_First_Should_Return_Correct_Holiday()
+    public void Constructor_With_DepartingFrom_Any_Airport_Input_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
         List<string> departingFrom = new List<string>();
