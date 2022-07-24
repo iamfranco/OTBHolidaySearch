@@ -85,7 +85,7 @@ internal class HolidaySearchTests
     public void Constructor_With_DepartingFrom_Any_London_Airports_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
-        List<string> departingFrom = new List<string>() { "LCY", "LHR", "LGW", "LTN", "STN", "SEN" };
+        List<string> departingFrom = new() { "LCY", "LHR", "LGW", "LTN", "STN", "SEN" };
         string travelingTo = "PMI";
         DateTime departureDate = DateTime.Parse("2023/06/15");
         int duration = 10;
@@ -121,7 +121,7 @@ internal class HolidaySearchTests
     public void Constructor_With_DepartingFrom_Any_Airport_Input_Then_Results_First_Should_Return_Correct_Holiday()
     {
         // Arrange
-        List<string> departingFrom = new List<string>();
+        List<string> departingFrom = new();
         string travelingTo = "LPA";
         DateTime departureDate = DateTime.Parse("2022/11/10");
         int duration = 14;
