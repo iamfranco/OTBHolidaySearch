@@ -25,8 +25,23 @@ public class FlightSearchService : IFlightSearchService
         List<Flight> flights = _flightReaderService.Read();
 
         return flights.Where(flight =>
-            (!departingFrom.Any() || departingFrom.Contains(flight.DepartingFrom)) &&
-            flight.TravelingTo == travelingTo &&
-            flight.DepartureDate == departureDate).ToList();
+            IsDepartingFromMatching(flight, departingFrom) &&
+            IsTravelingToMatching(flight, travelingTo) &&
+            IsDepartureDateMatching(flight, departureDate)
+            ).ToList();
     }
+
+    private static bool IsDepartingFromMatching(Flight flight, List<string> departingFrom)
+    {
+        if (!departingFrom.Any())
+            return true;
+
+        return departingFrom.Contains(flight.DepartingFrom);
+    }
+
+    private static bool IsTravelingToMatching(Flight flight, string travelingTo) => 
+        flight.TravelingTo == travelingTo;
+
+    private static bool IsDepartureDateMatching(Flight flight, DateTime departureDate) => 
+        flight.DepartureDate == departureDate;
 }

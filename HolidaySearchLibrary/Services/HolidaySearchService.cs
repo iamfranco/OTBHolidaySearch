@@ -31,17 +31,18 @@ public class HolidaySearchService
         List<Flight> flights = _flightSearchService.Search(departingFrom, travelingTo, departureDate);
         List<Hotel> hotels = _hotelSearchService.Search(travelingTo, departureDate, duration);
 
-        List<Holiday> holidays = new();
-
-        foreach (Flight flight in flights)
-        {
-            foreach (Hotel hotel in hotels)
-            {
-                holidays.Add(new Holiday(flight, hotel));
-            }
-        }
+        List<Holiday> holidays = GetHolidaysFromFlightsAndHotelsCombinations(flights, hotels);
 
         holidays = holidays.OrderBy(holiday => holiday.TotalPrice).ToList();
+
+        return holidays;
+    }
+
+    private static List<Holiday> GetHolidaysFromFlightsAndHotelsCombinations(List<Flight> flights, List<Hotel> hotels)
+    {
+        List<Holiday> holidays = flights.SelectMany(_ => hotels,
+            (flight, hotel) => new Holiday(flight, hotel))
+            .ToList();
 
         return holidays;
     }

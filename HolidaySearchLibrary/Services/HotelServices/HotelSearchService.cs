@@ -22,8 +22,18 @@ public class HotelSearchService : IHotelSearchService
         List<Hotel> hotels = _hotelReaderService.Read();
 
         return hotels.Where(hotel =>
-            hotel.LocalAirports.Contains(localAirport) &&
-            hotel.ArrivalDate == arrivalDate &&
-            hotel.Nights == duration).ToList();
+            IsLocalAirportMatching(hotel, localAirport) &&
+            IsArrivalDateMatching(hotel, arrivalDate) &&
+            IsDurationMatching(hotel, duration)
+            ).ToList();
     }
+
+    private static bool IsLocalAirportMatching(Hotel hotel, string localAirport) => 
+        hotel.LocalAirports.Contains(localAirport);
+
+    private static bool IsArrivalDateMatching(Hotel hotel, DateTime arrivalDate) =>
+        hotel.ArrivalDate == arrivalDate;
+
+    private static bool IsDurationMatching(Hotel hotel, int duration) =>
+        hotel.Nights == duration;
 }
