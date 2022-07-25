@@ -90,3 +90,11 @@ List<Holiday> holidays = holidaySearch.Results;
 This is the UML Class Diagram of this solution.
 
 ![UML Class Diagram](Diagrams/HolidaySearch.png)
+
+| Classes                | Purposes                                                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ReaderService`        | Reads JSON file into list of `Flight`s or `Hotel`s                                                                                                                             |
+| `FlightSearchService`  | Searches for a list of `Flight`s that satisfy search conditions, with dependency injection of `IReaderService`                                                                 |
+| `HotelSearchService`   | Searches for a list of `Hotel`s that satisfy search conditions, with dependency injection of `IReaderService`                                                                  |
+| `HolidaySearchService` | Searches for a list of `Holiday`s that satisfy search conditions, with dependency injections of `IFlightSearchService` and `IHotelSearchService`                               |
+| `HolidaySearch`        | A wrapper that uses `HolidaySearchService` to search for a list of `Holiday`s that satisfy search conditions, so that it can inject the all the dependency injections required |
